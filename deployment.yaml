@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: your-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: your-service
+  template:
+    metadata:
+      labels:
+        app: your-service
+    spec:
+      serviceAccountName: ecr-access-sa
+      containers:
+        - name: your-service
+          image: 767828724436.dkr.ecr.ap-northeast-2.amazonaws.com/your-service:latest
+          ports:
+            - containerPort: 8080
